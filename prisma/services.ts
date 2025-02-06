@@ -43,7 +43,7 @@ async function createSurvey(survey: Survey) {
 async function getSurveyById(id: string) {
     return await prisma.survey.findUnique({
         where: { id: id },
-    })
+    }) as Survey;
 }
 
 // Answer a survey
@@ -68,8 +68,8 @@ async function getSurveyResults(id: string) {
         return undefined;
     }
     const answers = await getAllAnswers();
-    const filteredAnswers = (answers).filter(answer => answer.surveyId === id).map(answer => answer.answer);
-    return { id: id, question: survey.question, answers: filteredAnswers };
+    // const filteredAnswers = (answers).filter(answer => answer.surveyId === id).map(answer => answer.answer);
+    return { id: id, question: survey.question, answers: answers } as Survey;
 }
 
 export { getAllSurveys, getAllAnswers, createSurvey, getSurveyById, answerSurvey, getSurveyResults };
