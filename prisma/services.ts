@@ -27,24 +27,24 @@ async function getAllAnswers(): Promise<Answer[]> {
 
 // Create a survey
 async function createSurvey(survey: Survey) {
-    return await prisma.survey.create({
-      data: {
-        question: survey.question,
-        ...(survey.answers && survey.answers.length > 0
-          ? {
-              answers: {
-                create: survey.answers.map((answer) => ({
-                  answer: answer.answer,
-                })),
-              },
-            }
-          : {}),
-      },
-      select: {
-        id: true,
-      },
-    });
-  }  
+  return await prisma.survey.create({
+    data: {
+      question: survey.question,
+      ...(survey.answers && survey.answers.length > 0
+        ? {
+            answers: {
+              create: survey.answers.map((answer) => ({
+                answer: answer.answer,
+              })),
+            },
+          }
+        : {}),
+    },
+    select: {
+      id: true,
+    },
+  });
+}
 
 // Get a survey by id
 async function getSurveyById(id: string) {

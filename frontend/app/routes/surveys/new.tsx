@@ -1,5 +1,5 @@
 import React from "react";
-import type { Route } from "../../../.react-router/types/app/+types/root";
+import type { Route } from "./+types/new";
 import apiClient from "client";
 import { Link, redirect } from "react-router";
 
