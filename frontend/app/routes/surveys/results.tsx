@@ -33,7 +33,7 @@ export default function Results() {
                         <li key={index} className="py-2 hover:bg-gray-600 rounded transition-colors duration-200 font-medium">{answer.answer}</li>
                     ))}
                 </ul>
-                <Link to={`/surveys/${results.id}`} className="mt-8 ml-2 flex justify-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200">Back to Survey</Link>
+                <Link to={`/surveys`} className="mt-8 ml-2 flex justify-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200">Back to Survey</Link>
             </div>
         </main>
     );

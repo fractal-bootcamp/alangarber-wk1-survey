@@ -8,7 +8,7 @@ import {
   getSurveyById,
   answerSurvey,
   getSurveyResults,
-} from "./prisma/services";
+} from "./prisma/services.ts";
 
 const app = new Elysia()
   .use(swagger())
