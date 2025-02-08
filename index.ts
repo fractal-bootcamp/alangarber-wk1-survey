@@ -1,6 +1,7 @@
 import { Elysia, t } from "elysia";
 import swagger from "@elysiajs/swagger";
 import cors from "@elysiajs/cors";
+import html from "@elysiajs/html";
 import {
   getAllSurveys,
   createSurvey,
@@ -14,13 +15,14 @@ const app = new Elysia()
   .use(swagger())
   .use(
     cors({
-      origin: "localhost:5173",
+      origin: ["localhost:5173", "https://your-netlify-site.netlify.app"],
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
       credentials: true,
     }),
   )
-  .get("/", () => "Hello Elysia")
+  .use(html())
+  .get("/", () => "Hello Elysia") 
   .get("/surveys", () => getAllSurveys())
   .post(
     "/surveys",
@@ -79,7 +81,8 @@ const app = new Elysia()
       }),
     },
   )
-  .listen(3000);
+  .listen({ hostname: "0.0.0.0", port: process.env.PORT ? Number(process.env.PORT) : 8080 })
+
 
 console.log(
   `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`,
